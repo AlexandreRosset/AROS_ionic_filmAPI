@@ -6,7 +6,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-content padding class="card-background-page">
+  <ion-input id="rounded" type="text" [(ngModel)]="inputfilm" (ionChange)="recherchefilm()"></ion-input>
+    <ion-card *ngFor="let film of datas.Search; let i = index">
+        <img [src]="film.Poster" (error)="fallback(i)">
+        <div class="textdiv">
+            <ion-card-title class="card-title">{{film.Title}}<br>{{film.Year}}</ion-card-title>
+         </div>
+    </ion-card>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
