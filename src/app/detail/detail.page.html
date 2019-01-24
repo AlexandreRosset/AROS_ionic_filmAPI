@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="darktheme">
+    <img [src]="posterURL()" (error)="fallback()">
+    <div class="textdiv">
+      <ion-card-title class="card-title">{{film.Title}}<br>{{film.Year}}</ion-card-title>
+    </div>
+</ion-content>

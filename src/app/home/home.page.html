@@ -8,12 +8,26 @@
 
 <ion-content padding class="card-background-page">
   <ion-input id="rounded" type="text" [(ngModel)]="inputfilm" (ionChange)="recherchefilm()"></ion-input>
-    <ion-card *ngFor="let film of datas.Search; let i = index">
-        <img [src]="film.Poster" (error)="fallback(i)">
-        <div class="textdiv">
-            <ion-card-title class="card-title">{{film.Title}}<br>{{film.Year}}</ion-card-title>
-         </div>
-    </ion-card>
+    <ion-list>
+        <ion-radio-group [(ngModel)]="typefilm" (ionChange)="recherchefilm()">
+
+            <ion-item>
+                <ion-label>Film</ion-label>
+                <ion-radio value="movie"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Séries</ion-label>
+                <ion-radio value="series"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+  <ion-card (click)="go(film.imdbID)" *ngFor="let film of datas.Search; let i = index">
+      <img [src]="film.Poster" (error)="fallback(i)">
+      <div class="textdiv">
+          <ion-card-title class="card-title">{{film.Title}}<br>{{film.Year}}</ion-card-title>
+       </div>
+  </ion-card>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content
             loadingSpinner="bubbles"
